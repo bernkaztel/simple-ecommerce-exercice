@@ -98,3 +98,4 @@ function saveShoppingCart() {
 function saveCounter (counterNumber) {
   localStorage.setItem("firstCounter",counterNumber );
 }
+
