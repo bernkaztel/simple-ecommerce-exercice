@@ -13,7 +13,7 @@ function createProductHTML(product) {
     <img src='${product.imageUrl}' alt='${product.description}'/>
     <p>${product.description}</p>
     <button data-product-id=${product.id}
-      onclick="addToCart(${product.id})"
+      onclick="addToCart(this,${product.id})"
       class='btn btn-primary'>
         Agregar a carrito
       </button>
@@ -27,39 +27,74 @@ function createProductHTML(product) {
 
 drawProducts(data);
 
-function addToCart() {
-  /* cuando agrego a carrito, tengo que:
-  1) Incrementar en uno mi contador del menu
-  2) Guardar mi producto en algun lugar
-  3) Cambiar el boton de agregar a carrito
-  por quitar del carrito
-  */
+function addToCart(eventTrigger, ItemID) {
+  if (eventTrigger.classList.contains('clicked') === false) {
+    increaseCounter(eventTrigger);
+    changeButtonStatus(false, eventTrigger);
+    addProduct(ItemID)
+  } else if (eventTrigger.classList.contains('clicked') === true) {
+    decreaseCounter(eventTrigger);
+    changeButtonStatus(true, eventTrigger);
+    deleteProduct(ItemID)
+  }
 }
 
-function removeFromCart() {
-  /* cuando agrego a carrito, tengo que:
-  1) Decrementar en uno mi contador del menu
-  2) Borrar mi producto de algun lugar
-  3) Cambiar el boton de quitar del carrito
-  por agregar a carrito
-  */
+
+shoppingCart = [];
+
+
+
+function addProduct(productId) {
+  (data.products).forEach(product => {
+    if (productId === product.id) {
+      shoppingCart.push(product);
+    }
+  });
+  // console.log(shoppingCart);
+  saveShoppingCart();
 }
 
-function increaseCounter() {
-  /* como accedemos al HTML del contador
-  y como lo incrementamos*/
+
+function deleteProduct(productId) {
+  shoppingCart = shoppingCart.filter(function (item) {
+    return item.id !== productId
+  })
+  // console.log(shoppingCart);
+  saveShoppingCart();
 }
 
-function decreaseCounter() {
-  /* como accedemos al HTML del contador
-  y como lo incrementamos*/
+function increaseCounter(eventTrigger) {
+  eventTrigger.classList.toggle('clicked')
+  const counter = document.getElementById('counterItems');
+  let counterNumber = parseInt(document.getElementById('counterItems').textContent);
+  counterNumber += 1
+  saveCounter(counterNumber);
+  counter.innerHTML = counterNumber;
+ 
 }
 
-function changeButtonStatus(button) {
-  /* esta funcion deberia recibir un boton y
-  cambiar su estatus
-    Si el boton esta en agregar al carrito
-      cambia el texto a quitar del carrito
-    Y viceversa
-  */
+function decreaseCounter(eventTrigger) {
+  eventTrigger.classList.toggle('clicked')
+  const counter = document.getElementById('counterItems');
+  let counterNumber = parseInt(document.getElementById('counterItems').textContent);
+  counterNumber -= 1
+  saveCounter(counterNumber);
+  counter.innerHTML = counterNumber;
+}
+
+function changeButtonStatus(condition, eventTrigger) {
+  if (condition === true) {
+    eventTrigger.textContent = 'Agregar al carrito';
+  } else if (condition === false) {
+    eventTrigger.textContent = 'Quitar del carrito';
+  }
+}
+
+function saveShoppingCart() {
+  localStorage.setItem("shoppingCartLS", JSON.stringify(shoppingCart));
+
+}
+
+function saveCounter (counterNumber) {
+  localStorage.setItem("firstCounter",counterNumber );
 }

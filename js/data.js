@@ -4,7 +4,7 @@ var data = {
       imageUrl: "http://dummyimage.com/100x100",
       title: "Nintendo Switch",
       description: "Just another description",
-      id: 3,
+      id: 1,
       price: 3900
     },
     {
@@ -18,28 +18,28 @@ var data = {
       imageUrl: "http://dummyimage.com/100x100",
       title: "Play Station 3",
       description: "Yes",
-      id: 1,
+      id: 3,
       price: 6500
     },
     {
       imageUrl: "http://dummyimage.com/100x100",
       title: "Play Station 2",
       description: "Yes",
-      id: 1,
+      id: 4,
       price: 1000
     },
     {
       imageUrl: "http://dummyimage.com/100x100",
       title: "Play Station 1",
       description: "Yes",
-      id: 1,
+      id: 5,
       price: 9500
     },
     {
       imageUrl: "http://dummyimage.com/100x100",
       title: "Nintendo 64",
       description: "Yes",
-      id: 1,
+      id: 6,
       price: 700
     }
   ]
