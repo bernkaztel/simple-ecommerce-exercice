@@ -53,7 +53,7 @@ function getPayPal(totalSum) {
         // Create a PayPal app: https://developer.paypal.com/developer/applications/create
         client: {
             sandbox: 'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
-            production: 'AVRT2nevRMk7taN7-i0V0ydxSA0mYOLHz6pNqiR5dnYIH9WJT39LzpjYBrcgxhpQg9ZRTRb1pi4ld9o6'
+            production: ''
         },
 
         // Show the buyer a 'Pay Now' button in the checkout flow
